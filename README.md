@@ -14,7 +14,7 @@ Since the applications are lightweight they can be colocated on your HBase Regio
 also saves bandwidth since this eliminates the network traffic that would otherwise be required to transfer the larger 
 datasets to the client where client side operations would occur. PhoenixRESTServer could also be deployed behind a HTTP/TCP
 load balancer to balance requests traffic. Here is a high level (and ugly) deployment architecture. 
-![PhoenixRESTServer Deployment Architecture](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "PhoenixRESTServer")
+![PhoenixRESTServer Deployment Architecture](https://raw.githubusercontent.com/jdye64/PhoenixRESTServer/master/screenshots/PhoenixRESTServer_DeploymentArchitecture.jpg "PhoenixRESTServer")
 
 ## Configuration
 PhoenixRESTServer configuration is done via a single YAML file. All Dropwizard configuration values are valid as well. A sample 
