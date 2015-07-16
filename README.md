@@ -26,3 +26,13 @@ git clone https://github.com/jdye64/PhoenixRESTServer.git
 cd ./PhoenixRESTServer
 mvn clean install package && java -jar ./target/PhoenixRESTServer-1.0-SNAPSHOT.jar server PhoenixRESTServer.yml
 ```
+
+## Example Clients
+* [.NET Demo Client](https://github.com/jdye64/PhoenixRESTServer-Client) 
+
+## Known areas for improvement
+* Documentation about REST API and expected payloads
+* Phoenix error catching a propagation. More elegant error catching and gracefully propagating those errors back to the client.
+* Python client module (@randerzander  =) )
+* CURL examples for most common requests
+* Simple query logging to file. This should be easy to achieve with a mixture of standard file logging and splashing in a few statements here and there
