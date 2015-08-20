@@ -1,31 +1,38 @@
-# RealHbaseFakeStore
-
-![RealHbaseFakeStore](/screenshots/homepage.jpg?raw=true "RealHbaseFakeStore Homepage")
+# PhoenixRESTServer
 
 ## Introduction
-RealHbaseFakeStore is a sample application that aims to demo some real world Hbase examples in a consumable manner around
-a small fictional online store (Jeremy's Bait Shop). It aims to show how Hbase can be used in combination with Phoenix 
-to provide online and robust solutions. For now the application demonstrates Hbase can be used to store receipts
-as images. There are plans of course to enhance this and add a lot more examples around the complete Hbase ecosystem. This 
-example is just the start. In the interest of keeping things simple this project does not strictly follow best 
-practices or use the most performant practices either.
+PhoenixRESTServer was introduced to serve as a stop gap for some features not currently supported by the Phoenix Query Server.
+At this time non Java clients cannot directly interact with the Phoenix Query Server. REST functionality is available in 
+the Phoenix Query Server but functionality is limited (Array type will not work for example). In order to ease the
+adoption pains for non Java shops PhoenixRESTServer was created to fill these gaps. 
 
-## Installation & Running
+## Architecture
+PhoenixRESTServer is a Java application written with the lightweight microframework [Dropwizard](http://dropwizard.io).
+This application accepts REST requests from any client and translates those REST requests into the correlating Phoenix JDBC
+command. With this approach PhoenixRESTServer is capable of performing any of the supported Phoenix JDBC features from non Java languages.
+Since the applications are lightweight they can be colocated on your HBase Region Servers. Colocating them on the Region Servers
+also saves bandwidth since this eliminates the network traffic that would otherwise be required to transfer the larger 
+datasets to the client where client side operations would occur. PhoenixRESTServer could also be deployed behind a HTTP/TCP
+load balancer to balance requests traffic. Here is a high level (and ugly) deployment architecture. 
+![PhoenixRESTServer Deployment Architecture](https://raw.githubusercontent.com/jdye64/PhoenixRESTServer/master/screenshots/PhoenixRESTServer_DeploymentArchitecture.jpg "PhoenixRESTServer")
+
+## Configuration
+PhoenixRESTServer configuration is done via a single YAML file. All Dropwizard configuration values are valid as well. A sample 
+is present at PhoenixRESTServer.yml for reference. TODO: add more information around configuration and clean up.
+
+## Running
 ```
-git clone https://github.com/jdye64/RealHbaseFakeStore.git
-cd RealHbaseFakeStore
-mvn clean install package
-# First lets load some examples for the application. This requres the Hortonworks Sandbox already be running on your local machine.
-# You can download the Hortonworks Sandbox from here. http://hortonworks.com/hdp/downloads/
-java -jar ./target/RealHbaseFakeStore-1.0-SNAPSHOT.jar LoadExamples RealHbaseFakeStore.yml
-# After successfully loading the examples start the server.
-java -jar ./target/RealHbaseFakeStore-1.0-SNAPSHOT.jar server RealHbaseFakeStore.yml
-# Once the server is running navigate to http://localhost:9000 or http://{host_server_running_on}:9000 to view the application.
+git clone https://github.com/jdye64/PhoenixRESTServer.git
+cd ./PhoenixRESTServer
+mvn clean install package && java -jar ./target/PhoenixRESTServer-1.0-SNAPSHOT.jar server PhoenixRESTServer.yml
 ```
 
-## TODO
-1.) Still need to add some actual receipt images instead of just random object images.
-2.) Create a dynamic Catalog table and REST service allowing for new objects to be added to the store.
-3.) Add Phoenix/Hbase security to demonstrate Hbase security principals.
-4.) Add OCR capabilities to parse receipt metadata from the handwritten receipt images and place metadata into Hbase alongside receipt image.
-5.) Ability to click the thumbnail receipt image and download the receipt directly to computer.
+## Example Clients
+* [.NET Demo Client](https://github.com/jdye64/PhoenixRESTServer-Client) 
+
+## Known areas for improvement
+* Documentation about REST API and expected payloads
+* Phoenix error catching a propagation. More elegant error catching and gracefully propagating those errors back to the client.
+* Python client module (@randerzander  =) )
+* CURL examples for most common requests
+* Simple query logging to file. This should be easy to achieve with a mixture of standard file logging and splashing in a few statements here and there

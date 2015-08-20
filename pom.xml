@@ -4,15 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.jeremydyer</groupId>
-    <artifactId>RealHbaseFakeStore</artifactId>
+    <groupId>com.hortonworks</groupId>
+    <artifactId>PhoenixRESTServer</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <dropwizard.version>0.7.1</dropwizard.version>
         <phoenix.version>4.2.0.2.2.0.0-2041</phoenix.version>
-        <httpcore.version>4.4.1</httpcore.version>
-        <httpclient.version>4.5</httpclient.version>
     </properties>
 
     <repositories>
@@ -32,12 +30,6 @@
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-forms</artifactId>
-            <version>${dropwizard.version}</version>
-            <type>pom</type>
-        </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
@@ -71,34 +63,11 @@
             <version>20140107</version>
         </dependency>
 
+        <!-- C3P0 for JDBC connection pooling -->
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>fluent-hc</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpasyncclient</artifactId>
-            <version>4.1-beta1</version>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
         </dependency>
 
         <!-- Phoenix Dependency -->
@@ -117,7 +86,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -149,7 +117,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.jeremydyer.RealHbaseFakeStoreApplication</mainClass>
+                                    <mainClass>com.hortonworks.PhoenixRESTServerApplication</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
