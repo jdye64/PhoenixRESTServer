@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Jeremy's Bait Shop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="images/avatar2.jpg" alt="" /></span>
+					<h1 id="logo"><a href="#">Jeremy Dyer</a></h1>
+					<p>Real Hbase fake company</p>
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">About</a></li>
+						<li><a href="#two">Items For Sale</a></li>
+						<li><a href="#three">Receipt Lookup</a></li>
+						<!--<li><a href="#four">Add Sample Receipt</a></li>-->
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="container">
+									<header class="major">
+										<h2>Jeremy's Bait Shop</h2>
+										<p>Fictional store website to demonstrate Hbase/Phoenix PDF
+                                            Image storage and retrieval in the context of the fictional
+                                            Jeremy's Bait Shop receipts.</p>
+									</header>
+									<p>Hbase provides the ability to store unstructured data within Hadoop. Phoenix is a new project
+                                    around Hbase that provides a SQL layer on top of Hbase tables. Phoenix does nothing more
+                                    than simply intercept SQL/JDBC requests and translate those requests into native Hbase API
+                                    calls. This demo will demonstrate how easily binary data (receipt image data) can be stored
+                                    alongside traditional data types inside Hbase. Each row in Hbase will contain metadata
+                                    about a receipt that allows a user of this website to search for a particular receipt
+                                    based on the metadata stored in the same row as the binary image in the HBase row.</p>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="container">
+									<h3>Items For Sale</h3>
+									<p>Here is a table of made up items for sale by Jeremy's Bait Shop. The information from these
+                                    items for sale can be used to lookup sample receipts from the receipt lookup demo.</p>
+                                    <table style="width:100%">
+                                        <tr>
+                                            <th>SKU</th>
+                                            <th>Item Name</th>
+                                            <th>Price</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1234</td>
+                                            <td>Fishing Pole</td>
+                                            <td>$76.95</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7896</td>
+                                            <td>Mepps Trout Spinning Lure</td>
+                                            <td>$3.49</td>
+                                        </tr>
+										<tr>
+											<td>5467</td>
+											<td>Orvis Fishing Vest</td>
+											<td>$36.99</td>
+										</tr>
+										<tr>
+											<td>1112</td>
+											<td>Reddington Fishing Waders</td>
+											<td>$96.99</td>
+										</tr>
+                                    </table>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h3>Receipt Finder</h3>
+									<p>Utility to look for existing receipts in the HBase receipt Image store. Fill out
+                                    the form below to search for an existing receipt. IF you would like to upload a test
+                                    receipt fill out the form below to upload an example you can then search for here. Obviously
+                                    more advanced search types can be added here such as date ranges, customer name, geolocation, etc
+                                    but to keep the demo brief and simple I have chosen to only use the lookup items listed below.</p>
+									<div class="features">
+                                        <form id="searchForm">
+                                            <p>Transaction ID: <input type="number" id="purchaseTransactionID" name="transactionID" min="0" step="1" /></p>
+                                            <p>SKU On Receipt: <input type="number" id="purchaseSKU" name="SKU" min="0" step="1" /></p>
+                                            <p>Purchase Date: <input type="date" id="purchaseDate" name="date"/></p>
+                                            <p>Purchase Price: <input type="number" id="purchasePrice" name="price" min="0.0" step="any"/></p>
+                                            <input type="submit" id="searchReceiptBtn" value="Search Receipts" />
+                                        </form>
+
+										<!-- Results from the search will be displayed here. Results are built dynamically via JQuery -->
+										<div id="receiptResults" class="features"/>
+
+									</div>
+								</div>
+							</section>
+
+						<!-- Four -->
+							<!--<section id="four">-->
+								<!--<div class="container">-->
+									<!--<h3>Create Sample Receipt</h3>-->
+									<!--<p>Upload your own sample receipt image here for testing. Once you upload the image-->
+                                    <!--you can search for it above to prove that it is there.</p>-->
+                                    <!--<form action="api/v1/image" method="post" enctype="multipart/form-data">-->
+                                        <!--<p>-->
+                                            <!--Select a file : <input type="file" name="file" size="45" />-->
+                                        <!--</p>-->
+                                        <!--<input type="submit" value="Upload It" />-->
+                                    <!--</form>-->
+								<!--</div>-->
+							<!--</section>-->
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; Jeremy Dyer. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+            <script>
+                $(document).ready(function() {
+                    console.log("JQuery document is ready");
+
+                    $('#searchReceiptBtn').click( function(e) {
+
+                        //Prevents the default form action from submitting.
+                        e.preventDefault();
+
+                        $.get( 'api/v1/receipt', $('#searchForm').serialize(), function(data) {
+
+							//Loops through all of the data and creates the articles.
+							for(var i = 0; i < data.length; i++) {
+    							var obj = data[i];
+								$('#receiptResults').append('<article><a href=\"#\" class=\"image\">' +
+								'<img src=\"data:image/jpeg;base64,' + obj['base64ImageString'] + '\" /></a>' +
+								'<div class=\"inner\"><h4>' + obj['transactionID'] + '</h4>' +
+								'<p><b>Purchase Price:</b> $' + obj['price'] + '<br />' +
+								'<b>Item SKU:</b> ' + obj['sku'] + '<br />' +
+								'<b>Purchase Date:</b> ' + obj['date'] + '</p>' +
+								'</div></article>');
+							}
+
+                        },
+                        'json'
+                        );
+                    });
+                });
+            </script>
+
+	</body>
+</html>
